@@ -33,19 +33,45 @@
     display: flex;
     gap: 20px;
     padding: 10px 30px;
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spotify Clone Player</title>
+<style>
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { font-family: Arial, sans-serif; background-color: #121212; color: white; }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
     background-color: #181818;
   }
 
-  nav a {
-    text-decoration: none;
-    color: #b3b3b3;
-    font-weight: bold;
-    cursor: pointer;
+  header h1 { color: #1DB954; font-size: 24px; }
+  .search-bar input {
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    width: 200px;
+    background-color: #333;
+    color: white;
   }
 
+  nav {
+    display: flex;
+    gap: 20px;
+    padding: 10px 30px;
+    background-color: #181818;
+  }
+
+  nav a { text-decoration: none; color: #b3b3b3; font-weight: bold; cursor: pointer; }
   nav a:hover { color: white; }
 
-  /* 앨범 그리드 */
   .album-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -62,17 +88,9 @@
     border-radius: 12px;
   }
 
-  .album img {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    transition: transform 0.2s;
-  }
-
+  .album img { width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.2s; }
   .album:hover img { transform: scale(1.05); }
-
   .album p { margin-top: 8px; font-size: 14px; }
-  
   .album button {
     margin-top: 8px;
     padding: 5px 10px;
@@ -83,30 +101,12 @@
     cursor: pointer;
     font-size: 12px;
   }
-
   .album button:hover { background-color: #17a44c; }
 
-  /* 유튜브 플레이어 */
-  #youtubePlayer {
-    display: none;
-    text-align: center;
-    margin: 30px 0;
-  }
+  #youtubePlayer { display: none; text-align: center; margin: 30px 0; }
+  iframe { width: 90%; max-width: 560px; height: 315px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
 
-  iframe {
-    width: 90%;
-    max-width: 560px;
-    height: 315px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-
-  /* 내 라이브러리 */
-  #library {
-    display: none;
-    padding: 20px 30px;
-  }
-
+  #library { display: none; padding: 20px 30px; }
   #library h2 { margin-bottom: 15px; }
   #library ul { list-style: none; }
   #library li {
@@ -114,7 +114,21 @@
     margin-bottom: 8px;
     padding: 8px 12px;
     border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
   }
+  #library li button {
+    padding: 3px 6px;
+    background-color: #c0392b;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  #library li button:hover { background-color: #e74c3c; }
 
   @media (max-width: 600px) {
     .search-bar input { width: 120px; }
@@ -136,41 +150,38 @@
   <a onclick="showLibrary()">내 라이브러리</a>
 </nav>
 
-<!-- 앨범 그리드 -->
 <div class="album-container" id="albumContainer">
   <div class="album">
     <img src="cover1.jpg" alt="노래 1" onclick="playYouTube('dQw4w9WgXcQ')">
     <p>노래 제목 1</p>
-    <button onclick="addToLibrary(event, '노래 제목 1')">내 라이브러리에 추가하기</button>
+    <button onclick="addToLibrary(event, '노래 제목 1','dQw4w9WgXcQ')">내 라이브러리에 추가하기</button>
   </div>
 
   <div class="album">
     <img src="cover2.jpg" alt="노래 2" onclick="playYouTube('9bZkp7q19f0')">
     <p>노래 제목 2</p>
-    <button onclick="addToLibrary(event, '노래 제목 2')">내 라이브러리에 추가하기</button>
+    <button onclick="addToLibrary(event, '노래 제목 2','9bZkp7q19f0')">내 라이브러리에 추가하기</button>
   </div>
 
   <div class="album">
     <img src="cover3.jpg" alt="노래 3" onclick="playYouTube('3JZ4pnNtyxQ')">
     <p>노래 제목 3</p>
-    <button onclick="addToLibrary(event, '노래 제목 3')">내 라이브러리에 추가하기</button>
+    <button onclick="addToLibrary(event, '노래 제목 3','3JZ4pnNtyxQ')">내 라이브러리에 추가하기</button>
   </div>
 
   <div class="album">
     <img src="cover4.jpg" alt="노래 4" onclick="playYouTube('kJQP7kiw5Fk')">
     <p>노래 제목 4</p>
-    <button onclick="addToLibrary(event, '노래 제목 4')">내 라이브러리에 추가하기</button>
+    <button onclick="addToLibrary(event, '노래 제목 4','kJQP7kiw5Fk')">내 라이브러리에 추가하기</button>
   </div>
 </div>
 
-<!-- 유튜브 플레이어 -->
 <div id="youtubePlayer">
   <iframe id="playerIframe" src=""
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
 </div>
 
-<!-- 내 라이브러리 -->
 <div id="library">
   <h2>내 라이브러리</h2>
   <ul id="libraryList"></ul>
@@ -188,23 +199,17 @@ function playYouTube(videoId) {
 }
 
 // 라이브러리에 추가
-function addToLibrary(event, songTitle) {
-  event.stopPropagation(); // 버튼 클릭이 이미지 클릭으로 이어지지 않도록
-  if(!librarySongs.includes(songTitle)){
-    librarySongs.push(songTitle);
+function addToLibrary(event, songTitle, videoId) {
+  event.stopPropagation(); // 이미지 클릭 방지
+  if(!librarySongs.some(song => song.title === songTitle)){
+    librarySongs.push({title: songTitle, videoId: videoId});
     alert(`${songTitle}이(가) 내 라이브러리에 추가되었습니다.`);
   } else {
     alert(`${songTitle}은 이미 라이브러리에 있습니다.`);
   }
 }
 
-// 홈 화면 표시
-function showHome() {
-  document.getElementById('albumContainer').style.display = 'grid';
-  document.getElementById('library').style.display = 'none';
-}
-
-// 라이브러리 화면 표시
+// 라이브러리 표시
 function showLibrary() {
   document.getElementById('albumContainer').style.display = 'none';
   const libraryDiv = document.getElementById('library');
@@ -214,14 +219,31 @@ function showLibrary() {
   if(librarySongs.length === 0){
     list.innerHTML = '<li>라이브러리에 곡이 없습니다.</li>';
   } else {
-    librarySongs.forEach(song => {
+    librarySongs.forEach((song, index) => {
       const li = document.createElement('li');
-      li.textContent = song;
+      li.textContent = song.title;
+      li.onclick = () => playYouTube(song.videoId);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = '삭제';
+      removeBtn.onclick = (e) => {
+        e.stopPropagation();
+        librarySongs.splice(index, 1);
+        showLibrary();
+      }
+
+      li.appendChild(removeBtn);
       list.appendChild(li);
     });
   }
 
   libraryDiv.style.display = 'block';
+}
+
+// 홈 표시
+function showHome() {
+  document.getElementById('albumContainer').style.display = 'grid';
+  document.getElementById('library').style.display = 'none';
 }
 </script>
 
