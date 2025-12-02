@@ -3,7 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Music Player</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #121212;
+            transition: background 0.8s ease;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .album-container {
+            display: flex;
+            gap: 40px;
+        }
+
+        .album {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .album:hover {
+            transform: scale(1.05);
+        }
+
+        .album img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,56 +69,22 @@
 
     </div>
 
-    <script src="script.js"></script>
+
+    <script>
+        const albums = document.querySelectorAll(".album");
+
+        albums.forEach(album => {
+            album.addEventListener("click", () => {
+                // 1) 배경색 변경
+                const newColor = album.dataset.color;
+                document.body.style.background = newColor;
+
+                // 2) 음악 링크 열기
+                const url = album.dataset.url;
+                window.open(url, "_blank");
+            });
+        });
+    </script>
 
 </body>
 </html>
-body {
-    margin: 0;
-    padding: 0;
-    background: #121212;
-    transition: background 0.8s ease;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.album-container {
-    display: flex;
-    gap: 40px;
-}
-
-.album {
-    width: 180px;
-    height: 180px;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.album:hover {
-    transform: scale(1.05);
-}
-
-.album img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-const albums = document.querySelectorAll(".album");
-
-albums.forEach(album => {
-    album.addEventListener("click", () => {
-
-        // 배경색 변경
-        const newColor = album.dataset.color;
-        document.body.style.background = newColor;
-
-        // 음악 링크 새 창 열기
-        const url = album.dataset.url;
-        window.open(url, "_blank");
-    });
-});
