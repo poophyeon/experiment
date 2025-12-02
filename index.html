@@ -2,89 +2,61 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Music Player</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #121212;
-            transition: background 0.8s ease;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .album-container {
-            display: flex;
-            gap: 40px;
-        }
-
-        .album {
-            width: 180px;
-            height: 180px;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .album:hover {
-            transform: scale(1.05);
-        }
-
-        .album img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
-</head>
-
+    <title>Mini Spotify</title>
+    <link rel="stylesheet" href="style.css">
+1</head>
 <body>
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+        <div class="logo">🎵 Mini Spotify</div>
+        <nav>
+            <ul>
+                <li>내 라이브러리</li>
+                <li>플레이리스트 만들기</li>
+                <li>팟캐스트</li>
+            </ul>
+        </nav>
+    </aside>
 
-    <div class="album-container">
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <section class="top-bar">
+            <input type="text" placeholder="검색">
+            <button>로그인</button>
+        </section>
 
-        <!-- 앨범 1 -->
-        <div class="album" 
-             data-color="#3b88c3" 
-             data-url="https://youtu.be/example1">
-            <img src="https://i.postimg.cc/3N5bgTtQ/album1.jpg">
-        </div>
+        <section class="popular-songs">
+            <h2>인기 상승 곡</h2>
+            <div class="songs-grid">
+                <!-- 앨범 카드 -->
+                <div class="album" data-color="#3b88c3" data-url="https://youtu.be/example1">
+                    <img src="https://i.postimg.cc/3N5bgTtQ/album1.jpg" alt="앨범1">
+                    <p class="title">Good Goodbye</p>
+                    <p class="artist">화사</p>
+                </div>
+                <div class="album" data-color="#c33b3b" data-url="https://youtu.be/example2">
+                    <img src="https://i.postimg.cc/jdJ3bGjP/album2.jpg" alt="앨범2">
+                    <p class="title">NOT CUTE ANYMORE</p>
+                    <p class="artist">ILLIT</p>
+                </div>
+                <div class="album" data-color="#4bb36b" data-url="https://youtu.be/example3">
+                    <img src="https://i.postimg.cc/ZqdGV0Rf/album3.jpg" alt="앨범3">
+                    <p class="title">0+0</p>
+                    <p class="artist">HANRORO</p>
+                </div>
+            </div>
+        </section>
 
-        <!-- 앨범 2 -->
-        <div class="album" 
-             data-color="#c33b3b" 
-             data-url="https://youtu.be/example2">
-            <img src="https://i.postimg.cc/jdJ3bGjP/album2.jpg">
-        </div>
+        <section class="popular-artists">
+            <h2>인기 아티스트</h2>
+            <div class="artists-grid">
+                <div class="artist"><img src="https://i.postimg.cc/xyz1.jpg" alt="아티스트1"></div>
+                <div class="artist"><img src="https://i.postimg.cc/xyz2.jpg" alt="아티스트2"></div>
+                <div class="artist"><img src="https://i.postimg.cc/xyz3.jpg" alt="아티스트3"></div>
+            </div>
+        </section>
+    </main>
 
-        <!-- 앨범 3 -->
-        <div class="album" 
-             data-color="#4bb36b" 
-             data-url="https://youtu.be/example3">
-            <img src="https://i.postimg.cc/ZqdGV0Rf/album3.jpg">
-        </div>
-
-    </div>
-
-
-    <script>
-        const albums = document.querySelectorAll(".album");
-
-        albums.forEach(album => {
-            album.addEventListener("click", () => {
-                // 1) 배경색 변경
-                const newColor = album.dataset.color;
-                document.body.style.background = newColor;
-
-                // 2) 음악 링크 열기
-                const url = album.dataset.url;
-                window.open(url, "_blank");
-            });
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
