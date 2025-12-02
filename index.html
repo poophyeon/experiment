@@ -1,1 +1,88 @@
-index.html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="album-container">
+
+        <!-- 앨범 1 -->
+        <div class="album" 
+             data-color="#3b88c3" 
+             data-url="https://youtu.be/example1">
+            <img src="https://i.postimg.cc/3N5bgTtQ/album1.jpg">
+        </div>
+
+        <!-- 앨범 2 -->
+        <div class="album" 
+             data-color="#c33b3b" 
+             data-url="https://youtu.be/example2">
+            <img src="https://i.postimg.cc/jdJ3bGjP/album2.jpg">
+        </div>
+
+        <!-- 앨범 3 -->
+        <div class="album" 
+             data-color="#4bb36b" 
+             data-url="https://youtu.be/example3">
+            <img src="https://i.postimg.cc/ZqdGV0Rf/album3.jpg">
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+body {
+    margin: 0;
+    padding: 0;
+    background: #121212;
+    transition: background 0.8s ease;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.album-container {
+    display: flex;
+    gap: 40px;
+}
+
+.album {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.album:hover {
+    transform: scale(1.05);
+}
+
+.album img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+const albums = document.querySelectorAll(".album");
+
+albums.forEach(album => {
+    album.addEventListener("click", () => {
+
+        // 배경색 변경
+        const newColor = album.dataset.color;
+        document.body.style.background = newColor;
+
+        // 음악 링크 새 창 열기
+        const url = album.dataset.url;
+        window.open(url, "_blank");
+    });
+});
