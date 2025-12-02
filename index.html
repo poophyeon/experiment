@@ -3,64 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Spotify Clone</title>
+<title>Spotify Clone Player</title>
 <style>
-  /* 전체 스타일 */
-  * { box-sizing: border-box; margin:0; padding:0; }
-  body { font-family: 'Arial', sans-serif; background-color: #121212; color: white; }
+  /* 전체 스타일 초기화 */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background-color: #121212; color: white; }
 
   /* 상단 배너 */
   header {
-    background-color: #181818;
-    padding: 10px 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #181818;
   }
 
-  header h1 {
-    color: #1DB954;
-    font-size: 24px;
-  }
-
-  /* 검색창 */
+  header h1 { color: #1DB954; font-size: 24px; }
   .search-bar input {
-    padding: 5px 10px;
+    padding: 5px 12px;
     border-radius: 20px;
     border: none;
     outline: none;
     width: 200px;
+    background-color: #333;
+    color: white;
   }
 
   /* 메뉴 */
   nav {
-    background-color: #181818;
-    padding: 10px 20px;
     display: flex;
     gap: 20px;
+    padding: 10px 30px;
+    background-color: #181818;
   }
 
   nav a {
-    color: #b3b3b3;
     text-decoration: none;
+    color: #b3b3b3;
     font-weight: bold;
   }
 
-  nav a:hover {
-    color: white;
-  }
+  nav a:hover { color: white; }
 
   /* 앨범 그리드 */
   .album-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
-    padding: 20px;
+    padding: 20px 30px;
   }
 
   .album {
-    cursor: pointer;
     text-align: center;
+    cursor: pointer;
     transition: transform 0.2s;
   }
 
@@ -71,14 +66,9 @@
     transition: transform 0.2s;
   }
 
-  .album:hover img {
-    transform: scale(1.05);
-  }
+  .album:hover img { transform: scale(1.05); }
 
-  .album p {
-    margin-top: 8px;
-    font-size: 14px;
-  }
+  .album p { margin-top: 8px; font-size: 14px; }
 
   /* 유튜브 플레이어 */
   #youtubePlayer {
@@ -88,8 +78,17 @@
   }
 
   iframe {
+    width: 90%;
+    max-width: 560px;
+    height: 315px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+
+  /* 반응형 */
+  @media (max-width: 600px) {
+    .search-bar input { width: 120px; }
+    iframe { height: 200px; }
   }
 </style>
 </head>
@@ -135,7 +134,7 @@
 
 <!-- 유튜브 플레이어 -->
 <div id="youtubePlayer">
-  <iframe id="playerIframe" width="560" height="315" src=""
+  <iframe id="playerIframe" src=""
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
 </div>
