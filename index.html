@@ -1,100 +1,153 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spotify Style Music Player</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #121212;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Spotify Clone</title>
+<style>
+  /* 전체 스타일 */
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { font-family: 'Arial', sans-serif; background-color: #121212; color: white; }
 
-    h1 {
-      text-align: center;
-      padding: 30px 0;
-    }
+  /* 상단 배너 */
+  header {
+    background-color: #181818;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    .album-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      padding: 0 20px 50px;
-    }
+  header h1 {
+    color: #1DB954;
+    font-size: 24px;
+  }
 
-    .album {
-      width: 200px;
-      cursor: pointer;
-      text-align: center;
-      transition: transform 0.2s;
-    }
+  /* 검색창 */
+  .search-bar input {
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    width: 200px;
+  }
 
-    .album img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: transform 0.2s;
-    }
+  /* 메뉴 */
+  nav {
+    background-color: #181818;
+    padding: 10px 20px;
+    display: flex;
+    gap: 20px;
+  }
 
-    .album:hover img {
-      transform: scale(1.05);
-    }
+  nav a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    .album p {
-      margin-top: 10px;
-      font-size: 16px;
-    }
+  nav a:hover {
+    color: white;
+  }
 
-    #youtubePlayer {
-      display: none;
-      text-align: center;
-      margin-bottom: 50px;
-    }
+  /* 앨범 그리드 */
+  .album-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
 
-    iframe {
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-  </style>
+  .album {
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .album img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: transform 0.2s;
+  }
+
+  .album:hover img {
+    transform: scale(1.05);
+  }
+
+  .album p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  /* 유튜브 플레이어 */
+  #youtubePlayer {
+    display: none;
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  iframe {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+</style>
 </head>
 <body>
 
-  <h1>My Music Player</h1>
+<!-- 상단 배너 -->
+<header>
+  <h1>MySpotify</h1>
+  <div class="search-bar">
+    <input type="text" placeholder="검색">
+  </div>
+</header>
 
-  <div class="album-container">
-    <div class="album" onclick="playYouTube('dQw4w9WgXcQ')">
-      <img src="cover1.jpg" alt="Song 1">
-      <p>노래 제목 1</p>
-    </div>
+<!-- 메뉴 -->
+<nav>
+  <a href="#">홈</a>
+  <a href="#">탐색</a>
+  <a href="#">내 라이브러리</a>
+</nav>
 
-    <div class="album" onclick="playYouTube('9bZkp7q19f0')">
-      <img src="cover2.jpg" alt="Song 2">
-      <p>노래 제목 2</p>
-    </div>
-
-    <div class="album" onclick="playYouTube('3JZ4pnNtyxQ')">
-      <img src="cover3.jpg" alt="Song 3">
-      <p>노래 제목 3</p>
-    </div>
+<!-- 앨범 그리드 -->
+<div class="album-container">
+  <div class="album" onclick="playYouTube('dQw4w9WgXcQ')">
+    <img src="cover1.jpg" alt="Song 1">
+    <p>노래 제목 1</p>
   </div>
 
-  <div id="youtubePlayer">
-    <iframe id="playerIframe" width="560" height="315" src=""
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+  <div class="album" onclick="playYouTube('9bZkp7q19f0')">
+    <img src="cover2.jpg" alt="Song 2">
+    <p>노래 제목 2</p>
   </div>
 
-  <script>
-    function playYouTube(videoId) {
-      const iframe = document.getElementById('playerIframe');
-      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-      document.getElementById('youtubePlayer').style.display = 'block';
-      iframe.scrollIntoView({behavior: "smooth"});
-    }
-  </script>
+  <div class="album" onclick="playYouTube('3JZ4pnNtyxQ')">
+    <img src="cover3.jpg" alt="Song 3">
+    <p>노래 제목 3</p>
+  </div>
+
+  <div class="album" onclick="playYouTube('kJQP7kiw5Fk')">
+    <img src="cover4.jpg" alt="Song 4">
+    <p>노래 제목 4</p>
+  </div>
+</div>
+
+<!-- 유튜브 플레이어 -->
+<div id="youtubePlayer">
+  <iframe id="playerIframe" width="560" height="315" src=""
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</div>
+
+<script>
+function playYouTube(videoId) {
+  const iframe = document.getElementById('playerIframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  document.getElementById('youtubePlayer').style.display = 'block';
+  iframe.scrollIntoView({behavior: "smooth"});
+}
+</script>
 
 </body>
 </html>
