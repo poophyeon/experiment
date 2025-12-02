@@ -1,62 +1,100 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Mini Spotify</title>
-    <link rel="stylesheet" href="style.css">
-1</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify Style Music Player</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #121212;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    .album-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 0 20px 50px;
+    }
+
+    .album {
+      width: 200px;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .album img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: transform 0.2s;
+    }
+
+    .album:hover img {
+      transform: scale(1.05);
+    }
+
+    .album p {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    #youtubePlayer {
+      display: none;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    iframe {
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
 <body>
-    <!-- 사이드바 -->
-    <aside class="sidebar">
-        <div class="logo">🎵 Mini Spotify</div>
-        <nav>
-            <ul>
-                <li>내 라이브러리</li>
-                <li>플레이리스트 만들기</li>
-                <li>팟캐스트</li>
-            </ul>
-        </nav>
-    </aside>
 
-    <!-- 메인 콘텐츠 -->
-    <main class="main-content">
-        <section class="top-bar">
-            <input type="text" placeholder="검색">
-            <button>로그인</button>
-        </section>
+  <h1>My Music Player</h1>
 
-        <section class="popular-songs">
-            <h2>인기 상승 곡</h2>
-            <div class="songs-grid">
-                <!-- 앨범 카드 -->
-                <div class="album" data-color="#3b88c3" data-url="https://youtu.be/example1">
-                    <img src="https://i.postimg.cc/3N5bgTtQ/album1.jpg" alt="앨범1">
-                    <p class="title">Good Goodbye</p>
-                    <p class="artist">화사</p>
-                </div>
-                <div class="album" data-color="#c33b3b" data-url="https://youtu.be/example2">
-                    <img src="https://i.postimg.cc/jdJ3bGjP/album2.jpg" alt="앨범2">
-                    <p class="title">NOT CUTE ANYMORE</p>
-                    <p class="artist">ILLIT</p>
-                </div>
-                <div class="album" data-color="#4bb36b" data-url="https://youtu.be/example3">
-                    <img src="https://i.postimg.cc/ZqdGV0Rf/album3.jpg" alt="앨범3">
-                    <p class="title">0+0</p>
-                    <p class="artist">HANRORO</p>
-                </div>
-            </div>
-        </section>
+  <div class="album-container">
+    <div class="album" onclick="playYouTube('dQw4w9WgXcQ')">
+      <img src="cover1.jpg" alt="Song 1">
+      <p>노래 제목 1</p>
+    </div>
 
-        <section class="popular-artists">
-            <h2>인기 아티스트</h2>
-            <div class="artists-grid">
-                <div class="artist"><img src="https://i.postimg.cc/xyz1.jpg" alt="아티스트1"></div>
-                <div class="artist"><img src="https://i.postimg.cc/xyz2.jpg" alt="아티스트2"></div>
-                <div class="artist"><img src="https://i.postimg.cc/xyz3.jpg" alt="아티스트3"></div>
-            </div>
-        </section>
-    </main>
+    <div class="album" onclick="playYouTube('9bZkp7q19f0')">
+      <img src="cover2.jpg" alt="Song 2">
+      <p>노래 제목 2</p>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="album" onclick="playYouTube('3JZ4pnNtyxQ')">
+      <img src="cover3.jpg" alt="Song 3">
+      <p>노래 제목 3</p>
+    </div>
+  </div>
+
+  <div id="youtubePlayer">
+    <iframe id="playerIframe" width="560" height="315" src=""
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function playYouTube(videoId) {
+      const iframe = document.getElementById('playerIframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      document.getElementById('youtubePlayer').style.display = 'block';
+      iframe.scrollIntoView({behavior: "smooth"});
+    }
+  </script>
+
 </body>
 </html>
