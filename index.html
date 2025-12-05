@@ -109,17 +109,98 @@
 <div class="main">
 
   <div class="album-container" id="albumContainer">
-    <!-- 15개의 음원 카드 생성 -->
-    <script>
-      const songData = [];
-      for (let i = 1; i <= 15; i++) {
-        songData.push({
-          title: `노래 제목 ${i}`,
-          videoId: "dQw4w9WgXcQ",
-          cover: `cover${(i % 8) + 1}.jpg`
-        });
-      }
-    </script>
+
+    <!-- 15개의 노래를 개별로 직접 작성 -->
+    <div class="album">
+      <img src="cover1.jpg" onclick="playYouTube('videoA')">
+      <p>노래 제목 1</p>
+      <button onclick="addToLibrary(event,'노래 제목 1','videoA')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover2.jpg" onclick="playYouTube('videoB')">
+      <p>노래 제목 2</p>
+      <button onclick="addToLibrary(event,'노래 제목 2','videoB')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover3.jpg" onclick="playYouTube('videoC')">
+      <p>노래 제목 3</p>
+      <button onclick="addToLibrary(event,'노래 제목 3','videoC')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover4.jpg" onclick="playYouTube('videoD')">
+      <p>노래 제목 4</p>
+      <button onclick="addToLibrary(event,'노래 제목 4','videoD')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover5.jpg" onclick="playYouTube('videoE')">
+      <p>노래 제목 5</p>
+      <button onclick="addToLibrary(event,'노래 제목 5','videoE')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover6.jpg" onclick="playYouTube('videoF')">
+      <p>노래 제목 6</p>
+      <button onclick="addToLibrary(event,'노래 제목 6','videoF')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover7.jpg" onclick="playYouTube('videoG')">
+      <p>노래 제목 7</p>
+      <button onclick="addToLibrary(event,'노래 제목 7','videoG')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover8.jpg" onclick="playYouTube('videoH')">
+      <p>노래 제목 8</p>
+      <button onclick="addToLibrary(event,'노래 제목 8','videoH')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover1.jpg" onclick="playYouTube('videoI')">
+      <p>노래 제목 9</p>
+      <button onclick="addToLibrary(event,'노래 제목 9','videoI')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover2.jpg" onclick="playYouTube('videoJ')">
+      <p>노래 제목 10</p>
+      <button onclick="addToLibrary(event,'노래 제목 10','videoJ')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover3.jpg" onclick="playYouTube('videoK')">
+      <p>노래 제목 11</p>
+      <button onclick="addToLibrary(event,'노래 제목 11','videoK')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover4.jpg" onclick="playYouTube('videoL')">
+      <p>노래 제목 12</p>
+      <button onclick="addToLibrary(event,'노래 제목 12','videoL')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover5.jpg" onclick="playYouTube('videoM')">
+      <p>노래 제목 13</p>
+      <button onclick="addToLibrary(event,'노래 제목 13','videoM')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover6.jpg" onclick="playYouTube('videoN')">
+      <p>노래 제목 14</p>
+      <button onclick="addToLibrary(event,'노래 제목 14','videoN')">내 라이브러리에 추가</button>
+    </div>
+
+    <div class="album">
+      <img src="cover7.jpg" onclick="playYouTube('videoO')">
+      <p>노래 제목 15</p>
+      <button onclick="addToLibrary(event,'노래 제목 15','videoO')">내 라이브러리에 추가</button>
+    </div>
+
   </div>
 
   <div id="youtubePlayer">
@@ -137,23 +218,6 @@
 
 <script>
 let librarySongs = [];
-
-// 화면 로딩 시 15개의 앨범 자동 생성
-window.onload = function () {
-  const container = document.getElementById("albumContainer");
-  songData.forEach((song, i) => {
-    const div = document.createElement("div");
-    div.className = "album";
-
-    div.innerHTML = `
-      <img src="${song.cover}" onclick="playYouTube('${song.videoId}')">
-      <p>${song.title}</p>
-      <button onclick="addToLibrary(event, '${song.title}', '${song.videoId}')">내 라이브러리에 추가</button>
-    `;
-
-    container.appendChild(div);
-  });
-};
 
 // 유튜브 재생
 function playYouTube(videoId) {
