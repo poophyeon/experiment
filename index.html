@@ -37,11 +37,13 @@
   nav a { text-decoration: none; color: #b3b3b3; font-weight: bold; cursor: pointer; }
   nav a:hover { color: white; }
 
+  /* ⭐⭐⭐ 오른쪽 정렬 + 5개씩 3줄 배치 ⭐⭐⭐ */
   .album-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(5, 1fr); /* 5개씩 한 줄 */
     gap: 20px;
     padding: 20px 30px;
+    justify-content: end;  /* 오른쪽으로 이동 */
   }
 
   .album {
@@ -94,11 +96,6 @@
     font-size: 12px;
   }
   #library li button:hover { background-color: #e74c3c; }
-
-  @media (max-width: 600px) {
-    .search-bar input { width: 120px; }
-    iframe { height: 200px; }
-  }
 </style>
 </head>
 <body>
@@ -115,54 +112,17 @@
   <a onclick="showLibrary()">내 라이브러리</a>
 </nav>
 
+<!-- ⭐⭐⭐ 15개의 앨범 (5개 × 3줄) ⭐⭐⭐ -->
 <div class="album-container" id="albumContainer">
-  <div class="album">
-    <img src="cover1.jpg" alt="노래 1" onclick="playYouTube('dQw4w9WgXcQ')">
-    <p>노래 제목 1</p>
-    <button onclick="addToLibrary(event, '노래 제목 1','dQw4w9WgXcQ')">내 라이브러리에 추가하기</button>
-  </div>
 
-  <div class="album">
-    <img src="cover2.jpg" alt="노래 2" onclick="playYouTube('9bZkp7q19f0')">
-    <p>노래 제목 2</p>
-    <button onclick="addToLibrary(event, '노래 제목 2','9bZkp7q19f0')">내 라이브러리에 추가하기</button>
-  </div>
-
-  <div class="album">
-    <img src="cover3.jpg" alt="노래 3" onclick="playYouTube('3JZ4pnNtyxQ')">
-    <p>노래 제목 3</p>
-    <button onclick="addToLibrary(event, '노래 제목 3','3JZ4pnNtyxQ')">내 라이브러리에 추가하기</button>
-  </div>
-
-  <div class="album">
-    <img src="cover4.jpg" alt="노래 4" onclick="playYouTube('kJQP7kiw5Fk')">
-    <p>노래 제목 4</p>
-    <button onclick="addToLibrary(event, '노래 제목 4','kJQP7kiw5Fk')">내 라이브러리에 추가하기</button>
-  </div>
-
-  <div class="album">
-    <img src="cover5.jpg" alt="노래 5" onclick="playYouTube('kJQP7kiw5Fk')">
-    <p>노래 제목 5</p>
-    <button onclick="addToLibrary(event, '노래 제목 5','kJQP7kiw5Fk')">내 라이브러리에 추가하기</button>
-  </div>
-
-  <div class="album">
-    <img src="cover6.jpg" alt="노래 6" onclick="playYouTube('kJQP7kiw5Fk')">
-    <p>노래 제목 6</p>
-    <button onclick="addToLibrary(event, '노래 제목 6','kJQP7kiw5Fk')">내 라이브러리에 추가하기</button>
-  </div>
-
-  <div class="album">
-    <img src="cover7.jpg" alt="노래 7" onclick="playYouTube('kJQP7kiw5Fk')">
-    <p>노래 제목 7</p>
-    <button onclick="addToLibrary(event, '노래 제목 7','kJQP7kiw5Fk')">내 라이브러리에 추가하기</button>
-  </div>
-
-  <div class="album">
-    <img src="cover8.jpg" alt="노래 8" onclick="playYouTube('kJQP7kiw5Fk')">
-    <p>노래 제목 8</p>
-    <button onclick="addToLibrary(event, '노래 제목 8','kJQP7kiw5Fk')">내 라이브러리에 추가하기</button>
-  </div>
+  <!-- 1~15번 -->
+  ${Array.from({length:15}).map((_,i)=>`
+    <div class="album">
+      <img src="cover${(i%8)+1}.jpg" alt="노래 ${i+1}" onclick="playYouTube('dQw4w9WgXcQ')">
+      <p>노래 제목 ${i+1}</p>
+      <button onclick="addToLibrary(event, '노래 제목 ${i+1}','dQw4w9WgXcQ')">내 라이브러리에 추가하기</button>
+    </div>
+  `).join('')}
 </div>
 
 <div id="youtubePlayer">
@@ -189,7 +149,7 @@ function playYouTube(videoId) {
 
 // 라이브러리에 추가
 function addToLibrary(event, songTitle, videoId) {
-  event.stopPropagation(); // 이미지 클릭 방지
+  event.stopPropagation();
   if(!librarySongs.some(song => song.title === songTitle)){
     librarySongs.push({title: songTitle, videoId: videoId});
     alert(`${songTitle}이(가) 내 라이브러리에 추가되었습니다.`);
@@ -229,7 +189,7 @@ function showLibrary() {
   libraryDiv.style.display = 'block';
 }
 
-// 홈 표시
+// 홈 화면
 function showHome() {
   document.getElementById('albumContainer').style.display = 'grid';
   document.getElementById('library').style.display = 'none';
